@@ -10,22 +10,60 @@ import java.time.format.DateTimeFormatter;
 
 public class Movimiento {
 
-    private static int contadorId = 1;
+    private int id;
+    private String tipo;
+    private double monto;
+    private LocalDateTime fechaHora;
+    private Usuario usuario;
 
-    private final int id;
-    private final Tipo tipo;
-    private final double monto;
-    private final LocalDateTime fechaHora;
+    public Movimiento() {
+    }
 
-    public Movimiento(Tipo tipo, double monto) {
-        this.id = contadorId++;
+    public Movimiento(String tipo, double monto, Usuario usuario) {
         this.tipo = tipo;
         this.monto = monto;
         this.fechaHora = LocalDateTime.now();
+        this.usuario = usuario;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
    @Override

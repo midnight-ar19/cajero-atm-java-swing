@@ -22,7 +22,7 @@ public class Usuario {
     private String numeroCuenta;
     private String numeroTarjeta;
     private double saldo;
-    private TipoCuenta tipoCuenta;
+    private String tipoCuenta;
     private String pin;
     private List<Movimiento> movimientos;
 
@@ -32,7 +32,7 @@ public class Usuario {
     }
 
     public Usuario(int id, String nombre, String apellido, String numeroCuenta, String numeroTarjeta,
-            double saldo, TipoCuenta tipoCuenta, String pin, List<Movimiento> movimientos) {
+            double saldo, String tipoCuenta, String pin, List<Movimiento> movimientos) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -72,12 +72,40 @@ public class Usuario {
         return numeroCuenta;
     }
 
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
     public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
-    public TipoCuenta getTipoCuenta() {
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
+    }
+
+    public String getTipoCuenta() {
         return tipoCuenta;
+    }
+
+    public void setTipoCuenta(String tipoCuenta) {
+        this.tipoCuenta = tipoCuenta;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public List<Movimiento> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<Movimiento> movimientos) {
+        this.movimientos = movimientos;
     }
 
     public String getPin() {
@@ -109,7 +137,7 @@ public class Usuario {
             throw new IllegalArgumentException("El monto de deposito debe ser positivo.");
         }
         saldo += monto;
-        movimientos.add(new Movimiento(Tipo.DEPOSITO, monto));
+        movimientos.add(new Movimiento("DEPOSITO", monto, this));
     }
 
     public synchronized void retirar(double monto) {
@@ -120,7 +148,7 @@ public class Usuario {
             throw new IllegalArgumentException("Saldo insuficiente.");
         }
         saldo -= monto;
-        movimientos.add(new Movimiento(Tipo.RETIRO, monto));
+        movimientos.add(new Movimiento("RETIRO", monto, this));
     }
 
     public synchronized void transferir(Usuario destino, double monto) {
@@ -137,8 +165,8 @@ public class Usuario {
         this.saldo -= monto;
         destino.saldo += monto;
 
-        this.movimientos.add(new Movimiento(Tipo.TRANSFERENCIA, monto));
-        destino.movimientos.add(new Movimiento(Tipo.DEPOSITO, monto));
+        this.movimientos.add(new Movimiento("TRANSFERENCIA", monto, this));
+        destino.movimientos.add(new Movimiento("DEPOSITO", monto, destino));
     }
     
     public static Usuario buscarPorCuenta(String cuenta) {
