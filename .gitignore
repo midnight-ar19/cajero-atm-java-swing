@@ -1,0 +1,8 @@
+/src/main/resources/db.properties
+target/
+.classpath
+.project
+.settings/
+.vscode/
+.DS_Store
+*.class
