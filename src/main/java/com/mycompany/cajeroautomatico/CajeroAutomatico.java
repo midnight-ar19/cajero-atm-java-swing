@@ -71,4 +71,12 @@ public class CajeroAutomatico {
         return usuarioDAO.findByNumeroTarjetaYPin(numeroTarjeta, pin);
     }
 
+    public static Usuario buscarPorCuenta(String numeroCuenta) {
+        return usuarioDAO.findByNumeroCuenta(numeroCuenta);
+    }
+
+    public static void actualizarUsuario(Usuario usuario) {
+        usuarioDAO.update(usuario);
+    }
+
 }

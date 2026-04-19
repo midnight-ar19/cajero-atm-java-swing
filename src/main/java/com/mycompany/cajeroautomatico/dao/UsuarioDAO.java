@@ -65,4 +65,14 @@ public class UsuarioDAO {
         session.close();
         return usuario;
     }
+
+    public Usuario findByNumeroCuenta(String numeroCuenta) {
+        Session session = HibernateUtil.getSession();
+        Usuario usuario = session
+            .createQuery("FROM Usuario WHERE numeroCuenta = :nc", Usuario.class)
+            .setParameter("nc", numeroCuenta)
+            .getSingleResult();
+        session.close();
+        return usuario;
+    }
 }

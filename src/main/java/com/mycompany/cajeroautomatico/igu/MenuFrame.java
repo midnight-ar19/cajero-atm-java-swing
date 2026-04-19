@@ -4,6 +4,7 @@
  */
 package com.mycompany.cajeroautomatico.igu;
 
+import com.mycompany.cajeroautomatico.CajeroAutomatico;
 import com.mycompany.cajeroautomatico.logica.Movimiento;
 import com.mycompany.cajeroautomatico.logica.Usuario;
 import java.awt.Color;
@@ -128,7 +129,7 @@ public class MenuFrame extends javax.swing.JFrame {
             return;
         }
 
-        Usuario destino = Usuario.buscarPorCuenta(cuenta);
+        Usuario destino = CajeroAutomatico.buscarPorCuenta(cuenta);
 
         if (destino == null) {
             JOptionPane.showMessageDialog(this, "Cuenta no encontrada.");

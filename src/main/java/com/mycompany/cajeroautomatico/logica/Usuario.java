@@ -91,6 +91,10 @@ public class Usuario {
         return saldo;
     }
 
+    public double consultarSaldo() {
+        return saldo;
+    }
+
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
@@ -105,6 +109,10 @@ public class Usuario {
 
     public String getPin() {
         return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     public List<Movimiento> getHistorialMovimientos() {
