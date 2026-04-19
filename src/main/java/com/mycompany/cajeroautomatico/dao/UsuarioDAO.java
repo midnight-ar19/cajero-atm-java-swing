@@ -59,7 +59,7 @@ public class UsuarioDAO {
         Session session = HibernateUtil.getSession();
         try {
             Usuario usuario = session
-                .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos WHERE u.numeroTarjeta = :nt AND u.pin = :pin", Usuario.class)
+                .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos m WHERE u.numeroTarjeta = :nt AND u.pin = :pin ORDER BY m.fechaHora DESC", Usuario.class)
                 .setParameter("nt", numeroTarjeta)
                 .setParameter("pin", pin)
                 .getSingleResult();
@@ -75,7 +75,7 @@ public class UsuarioDAO {
         Session session = HibernateUtil.getSession();
         try {
             Usuario usuario = session
-                .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos WHERE u.numeroCuenta = :nc", Usuario.class)
+                .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos m WHERE u.numeroCuenta = :nc ORDER BY m.fechaHora DESC", Usuario.class)
                 .setParameter("nc", numeroCuenta)
                 .getSingleResult();
             return usuario;
