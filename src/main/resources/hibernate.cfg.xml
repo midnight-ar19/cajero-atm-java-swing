@@ -12,8 +12,11 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.type_factory">org.hibernate.type.EnumType</property>
         
         <mapping resource="Usuario.hbm.xml"/>
         <mapping resource="Movimiento.hbm.xml"/>
+        <mapping class="com.mycompany.cajeroautomatico.logica.TipoCuenta"/>
+        <mapping class="com.mycompany.cajeroautomatico.logica.Tipo"/>
     </session-factory>
 </hibernate-configuration>

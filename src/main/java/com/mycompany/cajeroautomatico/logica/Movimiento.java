@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class Movimiento {
 
     private int id;
-    private String tipo;
+    private Tipo tipo;
     private double monto;
     private LocalDateTime fechaHora;
     private Usuario usuario;
@@ -19,7 +19,7 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(String tipo, double monto, Usuario usuario) {
+    public Movimiento(Tipo tipo, double monto, Usuario usuario) {
         this.tipo = tipo;
         this.monto = monto;
         this.fechaHora = LocalDateTime.now();
@@ -34,11 +34,11 @@ public class Movimiento {
         this.id = id;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 

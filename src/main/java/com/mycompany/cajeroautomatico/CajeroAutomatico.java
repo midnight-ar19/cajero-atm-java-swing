@@ -5,6 +5,7 @@ package com.mycompany.cajeroautomatico;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.cajeroautomatico.igu.InicioFrame;
+import com.mycompany.cajeroautomatico.logica.TipoCuenta;
 import com.mycompany.cajeroautomatico.logica.Usuario;
 import java.awt.Color;
 import javax.swing.UIManager;
@@ -43,9 +44,9 @@ public class CajeroAutomatico {
 
      
         Usuario u1 = new Usuario(1, "Alan Fabricio", "Alvarez Ramos", "001", "1111", 1000,
-                "AHORRO", "1234", null);
+                TipoCuenta.AHORRO, "1234", null);
         Usuario u2 = new Usuario(2, "Zury Nicol", "Castillo Rivera", "002", "2222", 500,
-                "CORRIENTE", "4321", null);
+                TipoCuenta.CORRIENTE, "4321", null);
 
         Usuario.agregarUsuario(u1);
         Usuario.agregarUsuario(u2);

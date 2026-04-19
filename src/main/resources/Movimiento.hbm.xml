@@ -7,7 +7,7 @@
         <id name="id" column="id" type="int">
             <generator class="native"/>
         </id>
-        <property name="tipo" column="tipo" type="string" not-null="true"/>
+        <property name="tipo" column="tipo" type="com.mycompany.cajeroautomatico.logica.Tipo" not-null="true"/>
         <property name="monto" column="monto" type="double" not-null="true"/>
         <property name="fechaHora" column="fecha_hora" type="timestamp" not-null="true"/>
         

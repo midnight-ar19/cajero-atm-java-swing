@@ -22,7 +22,7 @@ public class Usuario {
     private String numeroCuenta;
     private String numeroTarjeta;
     private double saldo;
-    private String tipoCuenta;
+    private TipoCuenta tipoCuenta;
     private String pin;
     private List<Movimiento> movimientos;
 
@@ -32,7 +32,7 @@ public class Usuario {
     }
 
     public Usuario(int id, String nombre, String apellido, String numeroCuenta, String numeroTarjeta,
-            double saldo, String tipoCuenta, String pin, List<Movimiento> movimientos) {
+            double saldo, TipoCuenta tipoCuenta, String pin, List<Movimiento> movimientos) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -84,11 +84,11 @@ public class Usuario {
         this.numeroTarjeta = numeroTarjeta;
     }
 
-    public String getTipoCuenta() {
+    public TipoCuenta getTipoCuenta() {
         return tipoCuenta;
     }
 
-    public void setTipoCuenta(String tipoCuenta) {
+    public void setTipoCuenta(TipoCuenta tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
     }
 
@@ -137,7 +137,7 @@ public class Usuario {
             throw new IllegalArgumentException("El monto de deposito debe ser positivo.");
         }
         saldo += monto;
-        movimientos.add(new Movimiento("DEPOSITO", monto, this));
+        movimientos.add(new Movimiento(Tipo.DEPOSITO, monto, this));
     }
 
     public synchronized void retirar(double monto) {
@@ -148,7 +148,7 @@ public class Usuario {
             throw new IllegalArgumentException("Saldo insuficiente.");
         }
         saldo -= monto;
-        movimientos.add(new Movimiento("RETIRO", monto, this));
+        movimientos.add(new Movimiento(Tipo.RETIRO, monto, this));
     }
 
     public synchronized void transferir(Usuario destino, double monto) {
@@ -165,8 +165,8 @@ public class Usuario {
         this.saldo -= monto;
         destino.saldo += monto;
 
-        this.movimientos.add(new Movimiento("TRANSFERENCIA", monto, this));
-        destino.movimientos.add(new Movimiento("DEPOSITO", monto, destino));
+        this.movimientos.add(new Movimiento(Tipo.TRANSFERENCIA, monto, this));
+        destino.movimientos.add(new Movimiento(Tipo.DEPOSITO, monto, destino));
     }
     
     public static Usuario buscarPorCuenta(String cuenta) {
