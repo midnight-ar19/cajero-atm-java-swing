@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class Movimiento {
 
     private int id;
-    private Tipo tipo;
+    private String tipo;
     private double monto;
     private LocalDateTime fechaHora;
     private Usuario usuario;
@@ -20,7 +20,7 @@ public class Movimiento {
     }
 
     public Movimiento(Tipo tipo, double monto, Usuario usuario) {
-        this.tipo = tipo;
+        this.tipo = tipo.name();
         this.monto = monto;
         this.fechaHora = LocalDateTime.now();
         this.usuario = usuario;
@@ -34,11 +34,11 @@ public class Movimiento {
         this.id = id;
     }
 
-    public Tipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -62,18 +62,22 @@ public class Movimiento {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
-   @Override
-public String toString() {
-    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    public Tipo getTipoEnum() {
+        return Tipo.valueOf(tipo);
+    }
 
-    return String.format(
-        "ID: %-3d | Tipo: %-10s | Monto: %-8.2f | Fecha: %s",
-        id, tipo, monto, fechaHora.format(formato)
-    );
-}
+   @Override
+ public String toString() {
+     DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+     return String.format(
+         "ID: %-3d | Tipo: %-10s | Monto: %-8.2f | Fecha: %s",
+         id, tipo, monto, fechaHora.format(formato)
+     );
+ }
 
 }
