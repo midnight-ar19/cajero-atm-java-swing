@@ -75,7 +75,7 @@ public class UsuarioDAO {
         Session session = HibernateUtil.getSession();
         try {
             Usuario usuario = session
-                .createQuery("FROM Usuario WHERE numeroCuenta = :nc", Usuario.class)
+                .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos WHERE u.numeroCuenta = :nc", Usuario.class)
                 .setParameter("nc", numeroCuenta)
                 .getSingleResult();
             return usuario;
