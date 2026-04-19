@@ -15,7 +15,7 @@
         <property name="pin" column="pin" type="string" not-null="true"/>
         <property name="tipoCuenta" column="tipo_cuenta" type="string" not-null="true"/>
         
-        <bag name="movimientos" cascade="all-delete-orphan" inverse="true">
+        <bag name="movimientos" cascade="all,delete-orphan" inverse="true">
             <key column="usuario_id"/>
             <one-to-many class="com.mycompany.cajeroautomatico.logica.Movimiento"/>
         </bag>

@@ -57,22 +57,32 @@ public class UsuarioDAO {
 
     public Usuario findByNumeroTarjetaYPin(String numeroTarjeta, String pin) {
         Session session = HibernateUtil.getSession();
-        Usuario usuario = session
-            .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos WHERE u.numeroTarjeta = :nt AND u.pin = :pin", Usuario.class)
-            .setParameter("nt", numeroTarjeta)
-            .setParameter("pin", pin)
-            .getSingleResult();
-        session.close();
-        return usuario;
+        try {
+            Usuario usuario = session
+                .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos WHERE u.numeroTarjeta = :nt AND u.pin = :pin", Usuario.class)
+                .setParameter("nt", numeroTarjeta)
+                .setParameter("pin", pin)
+                .getSingleResult();
+            return usuario;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
     }
 
     public Usuario findByNumeroCuenta(String numeroCuenta) {
         Session session = HibernateUtil.getSession();
-        Usuario usuario = session
-            .createQuery("FROM Usuario WHERE numeroCuenta = :nc", Usuario.class)
-            .setParameter("nc", numeroCuenta)
-            .getSingleResult();
-        session.close();
-        return usuario;
+        try {
+            Usuario usuario = session
+                .createQuery("FROM Usuario WHERE numeroCuenta = :nc", Usuario.class)
+                .setParameter("nc", numeroCuenta)
+                .getSingleResult();
+            return usuario;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
     }
 }

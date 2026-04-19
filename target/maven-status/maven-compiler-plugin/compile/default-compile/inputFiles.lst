@@ -1,5 +1,6 @@
 /home/midnight/NetBeansProjects/CajeroAutomatico/src/main/java/com/mycompany/cajeroautomatico/CajeroAutomatico.java
 /home/midnight/NetBeansProjects/CajeroAutomatico/src/main/java/com/mycompany/cajeroautomatico/dao/HibernateUtil.java
+/home/midnight/NetBeansProjects/CajeroAutomatico/src/main/java/com/mycompany/cajeroautomatico/dao/MovimientoDAO.java
 /home/midnight/NetBeansProjects/CajeroAutomatico/src/main/java/com/mycompany/cajeroautomatico/dao/UsuarioDAO.java
 /home/midnight/NetBeansProjects/CajeroAutomatico/src/main/java/com/mycompany/cajeroautomatico/database/TestHibernateConnection.java
 /home/midnight/NetBeansProjects/CajeroAutomatico/src/main/java/com/mycompany/cajeroautomatico/igu/InicioFrame.java

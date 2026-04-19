@@ -85,6 +85,7 @@ public class MenuFrame extends javax.swing.JFrame {
                 return;
             }
             usuario.depositar(montoDeposito);
+            CajeroAutomatico.actualizarUsuario(usuario);
             MostrarDatos();
             JOptionPane.showMessageDialog(this, "Deposito realizado correctamente.");
             mostrarMovimientos();
@@ -112,6 +113,7 @@ public class MenuFrame extends javax.swing.JFrame {
                 return;
             }
             usuario.retirar(montoRetiro);
+            CajeroAutomatico.actualizarUsuario(usuario);
             MostrarDatos();
             JOptionPane.showMessageDialog(this, "Retiro realizado correctamente.");
             mostrarMovimientos();
@@ -148,7 +150,8 @@ public class MenuFrame extends javax.swing.JFrame {
             double monto = Double.parseDouble(entrada.trim());
 
             usuario.transferir(destino, monto);
-
+            CajeroAutomatico.actualizarUsuario(usuario);
+            CajeroAutomatico.actualizarUsuario(destino);
             MostrarDatos();
             JOptionPane.showMessageDialog(this, "Transferencia realizada.");
             mostrarMovimientos();

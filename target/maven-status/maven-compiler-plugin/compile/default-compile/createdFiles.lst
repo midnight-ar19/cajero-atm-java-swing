@@ -5,3 +5,7 @@ com/mycompany/cajeroautomatico/logica/Movimiento.class
 com/mycompany/cajeroautomatico/igu/InicioFrame.class
 com/mycompany/cajeroautomatico/CajeroAutomatico.class
 com/mycompany/cajeroautomatico/igu/MenuFrame.class
+com/mycompany/cajeroautomatico/dao/MovimientoDAO.class
+com/mycompany/cajeroautomatico/dao/UsuarioDAO.class
+com/mycompany/cajeroautomatico/dao/HibernateUtil.class
+com/mycompany/cajeroautomatico/database/TestHibernateConnection.class
