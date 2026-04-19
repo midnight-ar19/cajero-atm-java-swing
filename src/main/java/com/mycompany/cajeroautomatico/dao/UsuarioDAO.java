@@ -58,7 +58,7 @@ public class UsuarioDAO {
     public Usuario findByNumeroTarjetaYPin(String numeroTarjeta, String pin) {
         Session session = HibernateUtil.getSession();
         Usuario usuario = session
-            .createQuery("FROM Usuario WHERE numeroTarjeta = :nt AND pin = :pin", Usuario.class)
+            .createQuery("FROM Usuario u LEFT JOIN FETCH u.movimientos WHERE u.numeroTarjeta = :nt AND u.pin = :pin", Usuario.class)
             .setParameter("nt", numeroTarjeta)
             .setParameter("pin", pin)
             .getSingleResult();
