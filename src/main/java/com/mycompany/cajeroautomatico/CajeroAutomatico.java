@@ -58,9 +58,9 @@ public class CajeroAutomatico {
         List<Usuario> usuarios = usuarioDAO.findAll();
         if (usuarios.isEmpty()) {
             Usuario u1 = new Usuario(0, "Alan Fabricio", "Alvarez Ramos", "001", "1111", 1000,
-                    TipoCuenta.AHORRO, "1234", null);
+                    "AHORRO", "1234", null);
             Usuario u2 = new Usuario(0, "Zury Nicol", "Castillo Rivera", "002", "2222", 500,
-                    TipoCuenta.CORRIENTE, "4321", null);
+                    "CORRIENTE", "4321", null);
 
             usuarioDAO.save(u1);
             usuarioDAO.save(u2);

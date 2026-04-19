@@ -19,7 +19,7 @@ public class Usuario {
     private String numeroCuenta;
     private String numeroTarjeta;
     private double saldo;
-    private TipoCuenta tipoCuenta;
+    private String tipoCuenta;
     private String pin;
     private List<Movimiento> movimientos;
 
@@ -27,7 +27,7 @@ public class Usuario {
     }
 
     public Usuario(int id, String nombre, String apellido, String numeroCuenta, String numeroTarjeta,
-            double saldo, TipoCuenta tipoCuenta, String pin, List<Movimiento> movimientos) {
+            double saldo, String tipoCuenta, String pin, List<Movimiento> movimientos) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -79,11 +79,11 @@ public class Usuario {
         this.numeroTarjeta = numeroTarjeta;
     }
 
-    public TipoCuenta getTipoCuenta() {
+    public String getTipoCuenta() {
         return tipoCuenta;
     }
 
-    public void setTipoCuenta(TipoCuenta tipoCuenta) {
+    public void setTipoCuenta(String tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
     }
 
