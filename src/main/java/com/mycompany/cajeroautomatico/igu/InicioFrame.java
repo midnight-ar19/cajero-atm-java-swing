@@ -4,6 +4,7 @@
  */
 package com.mycompany.cajeroautomatico.igu;
 
+import com.mycompany.cajeroautomatico.CajeroAutomatico;
 import com.mycompany.cajeroautomatico.logica.Usuario;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -153,7 +154,7 @@ public class InicioFrame extends javax.swing.JFrame {
             return;
         }
 
-        Usuario usuario = Usuario.validarUsuario(tarjeta, pin);
+        Usuario usuario = CajeroAutomatico.validarUsuario(tarjeta, pin);
 
         if (usuario == null) {
             lblError.setText("Credenciales incorrectas.");

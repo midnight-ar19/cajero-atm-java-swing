@@ -54,4 +54,15 @@ public class UsuarioDAO {
         session.close();
         return usuarios;
     }
+
+    public Usuario findByNumeroTarjetaYPin(String numeroTarjeta, String pin) {
+        Session session = HibernateUtil.getSession();
+        Usuario usuario = session
+            .createQuery("FROM Usuario WHERE numeroTarjeta = :nt AND pin = :pin", Usuario.class)
+            .setParameter("nt", numeroTarjeta)
+            .setParameter("pin", pin)
+            .getSingleResult();
+        session.close();
+        return usuario;
+    }
 }

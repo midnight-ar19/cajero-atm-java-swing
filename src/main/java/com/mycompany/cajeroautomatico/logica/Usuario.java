@@ -5,10 +5,7 @@
 package com.mycompany.cajeroautomatico.logica;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -25,8 +22,6 @@ public class Usuario {
     private TipoCuenta tipoCuenta;
     private String pin;
     private List<Movimiento> movimientos;
-
-    private static Map<String, Usuario> usuarios = new HashMap<>();
 
     public Usuario() {
     }
@@ -112,27 +107,11 @@ public class Usuario {
         return pin;
     }
 
-    public static void agregarUsuario(Usuario u) {
-        usuarios.put(u.getNumeroTarjeta(), u);
+    public List<Movimiento> getHistorialMovimientos() {
+        return movimientos;
     }
 
-    public synchronized List<Movimiento> getHistorialMovimientos() {
-        return Collections.unmodifiableList(movimientos);
-    }
-
-    public synchronized double consultarSaldo() {
-        return saldo;
-    }
-
-    public static Usuario validarUsuario(String numeroTarjeta, String pin) {
-        Usuario usuario = usuarios.get(numeroTarjeta);
-        if (usuario != null && usuario.getPin().equals(pin)) {
-            return usuario;
-        }
-        return null;
-    }
-
-    public synchronized void depositar(double monto) {
+    public void depositar(double monto) {
         if (monto <= 0) {
             throw new IllegalArgumentException("El monto de deposito debe ser positivo.");
         }
@@ -140,7 +119,7 @@ public class Usuario {
         movimientos.add(new Movimiento(Tipo.DEPOSITO, monto, this));
     }
 
-    public synchronized void retirar(double monto) {
+    public void retirar(double monto) {
         if (monto <= 0) {
             throw new IllegalArgumentException("El monto de retiro debe ser positivo.");
         }
@@ -151,7 +130,7 @@ public class Usuario {
         movimientos.add(new Movimiento(Tipo.RETIRO, monto, this));
     }
 
-    public synchronized void transferir(Usuario destino, double monto) {
+    public void transferir(Usuario destino, double monto) {
         if (destino == null) {
             throw new IllegalArgumentException("Cuenta destino inválida.");
         }
@@ -168,14 +147,4 @@ public class Usuario {
         this.movimientos.add(new Movimiento(Tipo.TRANSFERENCIA, monto, this));
         destino.movimientos.add(new Movimiento(Tipo.DEPOSITO, monto, destino));
     }
-    
-    public static Usuario buscarPorCuenta(String cuenta) {
-    for (Usuario u : usuarios.values()) {
-        if (u.getNumeroCuenta().equals(cuenta)) {
-            return u;
-        }
-    }
-    return null;
-}
-
 }

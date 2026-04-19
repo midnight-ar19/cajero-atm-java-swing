@@ -4,14 +4,18 @@
 package com.mycompany.cajeroautomatico;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.mycompany.cajeroautomatico.dao.UsuarioDAO;
 import com.mycompany.cajeroautomatico.igu.InicioFrame;
 import com.mycompany.cajeroautomatico.logica.TipoCuenta;
 import com.mycompany.cajeroautomatico.logica.Usuario;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.UIManager;
 
 
 public class CajeroAutomatico {
+
+    private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public static void main(String[] args) {
 
@@ -42,19 +46,29 @@ public class CajeroAutomatico {
 
         FlatLightLaf.setup();
 
-     
-        Usuario u1 = new Usuario(1, "Alan Fabricio", "Alvarez Ramos", "001", "1111", 1000,
-                TipoCuenta.AHORRO, "1234", null);
-        Usuario u2 = new Usuario(2, "Zury Nicol", "Castillo Rivera", "002", "2222", 500,
-                TipoCuenta.CORRIENTE, "4321", null);
-
-        Usuario.agregarUsuario(u1);
-        Usuario.agregarUsuario(u2);
+        inicializarUsuarios();
 
         InicioFrame ventana = new InicioFrame();
         ventana.setVisible(true);
         ventana.setLocationRelativeTo(null);
 
+    }
+
+    public static void inicializarUsuarios() {
+        List<Usuario> usuarios = usuarioDAO.findAll();
+        if (usuarios.isEmpty()) {
+            Usuario u1 = new Usuario(0, "Alan Fabricio", "Alvarez Ramos", "001", "1111", 1000,
+                    TipoCuenta.AHORRO, "1234", null);
+            Usuario u2 = new Usuario(0, "Zury Nicol", "Castillo Rivera", "002", "2222", 500,
+                    TipoCuenta.CORRIENTE, "4321", null);
+
+            usuarioDAO.save(u1);
+            usuarioDAO.save(u2);
+        }
+    }
+
+    public static Usuario validarUsuario(String numeroTarjeta, String pin) {
+        return usuarioDAO.findByNumeroTarjetaYPin(numeroTarjeta, pin);
     }
 
 }
